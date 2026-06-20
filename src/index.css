@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #2E4374 #0B0C10;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-void text-goggle font-body antialiased;
+    background-image:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(46, 67, 116, 0.35), transparent),
+      radial-gradient(ellipse 60% 40% at 90% 10%, rgba(255, 210, 63, 0.07), transparent);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background: #FFD23F;
+    color: #0B0C10;
+  }
+
+  /* Visible keyboard focus everywhere */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid #FFD23F;
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Skip link */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 1rem;
+    z-index: 100;
+  }
+  .skip-link:focus {
+    left: 1rem;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-mono text-xs tracking-[0.25em] uppercase text-minion/80;
+  }
+
+  .glass-panel {
+    background: rgba(20, 23, 31, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 210, 63, 0.12);
+  }
+
+  .glass-input {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(201, 207, 216, 0.18);
+  }
+
+  .glass-input:focus {
+    border-color: rgba(255, 210, 63, 0.55);
+    background: rgba(255, 255, 255, 0.05);
+  }
+
+  .goggle-frame {
+    border: 2px solid rgba(255, 210, 63, 0.35);
+    box-shadow: 0 0 0 4px rgba(11, 12, 16, 0.6), 0 0 30px rgba(255, 210, 63, 0.08);
+    transition: box-shadow 0.4s ease, border-color 0.4s ease, transform 0.4s ease;
+  }
+
+  .goggle-frame:hover {
+    border-color: rgba(255, 210, 63, 0.8);
+    box-shadow: 0 0 0 4px rgba(11, 12, 16, 0.6), 0 0 46px rgba(255, 210, 63, 0.25);
+  }
+}
+
+/* Custom cursor - goggle lens ring (desktop / fine pointers only).
+   Targets every element, not just body, because links/buttons carry
+   their own default "cursor: pointer" that would otherwise win over
+   an inherited value. */
+@media (pointer: fine) {
+  .has-custom-cursor,
+  .has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+
+/* Respect reduced motion globally */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
