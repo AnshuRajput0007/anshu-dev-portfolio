@@ -49,7 +49,11 @@ export default function Hero() {
           </p>
 
           <p className="mt-5 h-7 font-mono text-base sm:text-lg text-goggle">
-            <span aria-live="polite">{typed}</span>
+            {/* The typewriter text changes every few milliseconds, so it is hidden from
+                screen readers (a live region would announce each letter). They read
+                the static line below instead. */}
+            <span aria-hidden="true">{typed}</span>
+            <span className="sr-only">{heroRoles[0]}</span>
             <span className="ml-0.5 inline-block w-[2px] animate-pulse bg-minion" style={{ height: "1.1em" }} />
           </p>
 
