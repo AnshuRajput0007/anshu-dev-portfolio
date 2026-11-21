@@ -3,10 +3,9 @@
 A dark, premium developer portfolio for **Anshu Rajput** (Frontend
 Developer, B.Tech CSE @ RKGIT, Class of 2027) with a playful
 Minion-inspired accent theme: a single goggle-lens motif used
-throughout (custom cursor, project card frames, the mascot in the
-contact section), an animated mascot, a 3D floating goggle in the
-hero, typing animations, glassmorphism inputs, and motion built with
-Framer Motion + GSAP.
+throughout (custom cursor, project card frames, QR code frame), an
+animated mascot in the hero, a 3D floating goggle, typing animations,
+glassmorphism inputs, and motion built with Framer Motion + GSAP.
 
 Content (bio, skills, projects, leadership experience, contact info)
 was pulled from your existing portfolio at
@@ -17,12 +16,18 @@ Three.js (via react-three-fiber)**.
 
 ## 1. Run it locally
 
+Requires Node.js 20.19+ or 22.12+ (Vite 8).
+
 ```bash
 npm install
 npm run dev       # http://localhost:5173
+npm run lint      # ESLint
 npm run build     # production build -> dist/
 npm run preview   # serve the production build locally
 ```
+
+GitHub Actions runs `npm run lint` and `npm run build` on Node 20 and 22
+for every push and pull request to `main`.
 
 ## 2. What's already filled in vs. what's left
 
@@ -38,7 +43,7 @@ npm run preview   # serve the production build locally
 
 | What | Where | Note |
 |---|---|---|
-| GitHub profile/repo links | `src/data/projects.js` (`codeUrl`), `src/components/Contact.jsx` | Your old site didn't list a GitHub link — add yours and I'll wire up the icon (a `GithubMark` component already exists in `src/components/BrandIcon.jsx`, just unused right now) |
+| GitHub profile/repo links | `src/data/projects.js` (`codeUrl`), `src/components/Contact.jsx` | `codeUrl` is `"#"` for every project, and the contact section has no GitHub link yet. The `GithubMark` icon in `src/components/BrandIcon.jsx` is already used by the project cards. |
 | Live + code links for Dashboard UI | `src/data/projects.js` | Marked `"#"` for now |
 | Resume file | drop a `resume.pdf` into `public/` | The hero's Resume button already links to `/resume.pdf` |
 
@@ -57,9 +62,10 @@ box. To actually deliver messages to `rajputanshu0007@gmail.com`, pick one:
 
 ## 4. Performance & accessibility notes
 
-- The 3D hero scene (`GoggleScene.jsx`) is lazy-loaded (`React.lazy`),
-  so it doesn't block the initial page render — the heavy Three.js
-  chunk only loads after the main bundle, in parallel.
+- The 3D hero scene (`GoggleScene.jsx`) and the QR code library are
+  lazy-loaded (`React.lazy`), so they don't block the initial page
+  render — the heavy Three.js chunk only loads after the main bundle,
+  in parallel.
 - GSAP/ScrollTrigger are dynamically imported only when the About
   section's stat counters mount.
 - All decorative motion (mascot blink/float, particles, cursor)
@@ -88,15 +94,16 @@ Then deploy the `dist/` folder to **Vercel**, **Netlify**, or
 **Cloudflare Pages** (all have a free tier and a one-command/one-click
 flow from a GitHub repo). The site is already configured for
 `anshu-dev-portfolio.netlify.app` — if you ever move to a custom
-domain, update that URL across `index.html`, `public/sitemap.xml`, and
-`public/robots.txt`.
+domain, update that URL across `index.html`, `public/sitemap.xml`,
+`public/robots.txt`, and `SITE_URL` in `src/components/Contact.jsx` (the
+QR code).
 
 ## 6. Project structure
 
 ```
 src/
   components/      All UI sections + the reusable bits (mascot, cursor,
-                    particles, 3D scene, project card, etc.)
+                    particles, 3D scene, QR code, project card, etc.)
   data/            Editable content: skills.js, projects.js, experience.js
   hooks/           useTypingEffect.js (the typewriter hook)
 public/
@@ -113,7 +120,7 @@ The Minion reference is kept to a *motif*, not a costume: one signature
 goggle-lens shape recurs as the custom cursor ring and the project
 card border treatment, while the actual mascot character is small,
 original artwork (not a reproduction of any studio's character
-design) used as an accent in both the hero and the contact section.
+design) used as an accent in the hero.
 Color system: void black background, signature yellow (`#FFD23F`), a
 denim blue for contrast/glow (`#2E4374`), and a cream/silver pair for
 text — defined as named tokens in `tailwind.config.js`.
