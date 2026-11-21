@@ -1,0 +1,20 @@
+# Anshu Rajput — Frontend Developer Portfolio
+
+> Portfolio of Anshu Rajput, a frontend developer and B.Tech CSE student (RKGIT, Class of 2027) based in Delhi, India. Builds responsive, performance-first interfaces with React, JavaScript and Tailwind CSS. Looking for a frontend web development internship.
+
+## About
+- Role: Frontend Developer (student, open to internships)
+- Education: B.Tech in Computer Science and Engineering, Raj Kumar Goel Institute of Technology (RKGIT), graduating 2027
+- Location: Delhi, India
+- Skills: JavaScript, Java, Python, HTML5, CSS3, React.js, Tailwind CSS, Bootstrap, Git and GitHub, API integration, web performance, semantic HTML and SEO
+- Leadership: Technical Lead at STHAPATYA Society, RKGIT (2024 to present); Promotional Head for the TATVA 2026 college fest
+
+## Projects
+- [Portfolio Website](https://anshu-rajput-portfolio.netlify.app/): earlier personal portfolio built with HTML5, CSS3 and JavaScript
+- [Rezumefy](https://rezumefy.netlify.app/): online resume builder with templates and pre-generated content blocks
+- Dashboard UI: scalable admin dashboard built in React with reusable components (no public link yet)
+
+## Links
+- [Portfolio](https://anshu-dev-portfolio.netlify.app/)
+- [LinkedIn](https://www.linkedin.com/in/anshu-rajput-3b9a15375)
+- Email: rajputanshu0007@gmail.com
