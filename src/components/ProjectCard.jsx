@@ -18,6 +18,10 @@ const accentMap = {
   },
 };
 
+// A "#" placeholder is a dead link: it scrolls to the top and is useless to
+// crawlers and screen readers, so only render links that point somewhere.
+const isLink = (url) => Boolean(url) && url !== "#";
+
 export default function ProjectCard({ project, index }) {
   const cardRef = useRef(null);
   const accent = accentMap[project.accent] ?? accentMap.minion;
@@ -79,22 +83,34 @@ export default function ProjectCard({ project, index }) {
           ))}
         </div>
 
-        <div className="mt-6 flex items-center gap-5 border-t border-white/5 pt-4">
-          <a
-            href={project.liveUrl}
-            data-cursor="hover"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-cream transition-colors hover:text-minion"
-          >
-            <ExternalLink size={15} /> Live Demo
-          </a>
-          <a
-            href={project.codeUrl}
-            data-cursor="hover"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-mist transition-colors hover:text-minion"
-          >
-            <GithubMark size={15} /> Code
-          </a>
-        </div>
+        {(isLink(project.liveUrl) || isLink(project.codeUrl)) && (
+          <div className="mt-6 flex items-center gap-5 border-t border-white/5 pt-4">
+            {isLink(project.liveUrl) && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${project.title}: live demo`}
+                data-cursor="hover"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-cream transition-colors hover:text-minion"
+              >
+                <ExternalLink size={15} /> Live Demo
+              </a>
+            )}
+            {isLink(project.codeUrl) && (
+              <a
+                href={project.codeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${project.title}: source code`}
+                data-cursor="hover"
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-mist transition-colors hover:text-minion"
+              >
+                <GithubMark size={15} /> Code
+              </a>
+            )}
+          </div>
+        )}
       </motion.article>
     </motion.div>
   );
