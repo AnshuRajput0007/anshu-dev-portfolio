@@ -5,7 +5,7 @@ import SectionHeading from "./SectionHeading";
 import ThemedQRCode from "./ThemedQRCode";
 import { LinkedinMark } from "./BrandIcon";
 
-const SITE_URL = "https://your-portfolio-url.com";
+const SITE_URL = "https://anshu-dev-portfolio.netlify.app";
 
 const socials = [
   { icon: LinkedinMark, label: "LinkedIn", href: "https://www.linkedin.com/in/anshu-rajput-3b9a15375" },
