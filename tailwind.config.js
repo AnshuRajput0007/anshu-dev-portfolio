@@ -15,6 +15,7 @@ export default {
         denim: {
           DEFAULT: "#2E4374", // overalls blue / glow
           soft: "#4C68A8",
+          text: "#8FA7DE",   // light enough for small text on the dark panels (7:1+)
           deep: "#1B2A4D",
         },
         goggle: "#C9CFD8",   // lens silver

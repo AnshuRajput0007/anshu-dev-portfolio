@@ -13,7 +13,7 @@ const accentMap = {
   denim: {
     ring: "border-denim-soft/30 hover:border-denim-soft/70",
     glow: "hover:shadow-denimglow",
-    chip: "border-denim-soft/40 text-denim-soft",
+    chip: "border-denim-soft/40 text-denim-text",
     dot: "bg-denim-soft",
   },
 };
