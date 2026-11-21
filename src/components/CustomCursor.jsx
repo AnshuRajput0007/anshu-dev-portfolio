@@ -9,13 +9,12 @@ import { useEffect, useRef, useState } from "react";
 export default function CustomCursor() {
   const ringRef = useRef(null);
   const dotRef = useRef(null);
-  const [enabled, setEnabled] = useState(false);
-
-  useEffect(() => {
+  // Read the media queries once, when the component first mounts.
+  const [enabled] = useState(() => {
     const isFinePointer = window.matchMedia("(pointer: fine)").matches;
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setEnabled(isFinePointer && !reduced);
-  }, []);
+    return isFinePointer && !reduced;
+  });
 
   useEffect(() => {
     if (!enabled) return;

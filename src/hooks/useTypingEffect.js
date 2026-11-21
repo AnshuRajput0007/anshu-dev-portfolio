@@ -33,8 +33,12 @@ export function useTypingEffect(
         setText(current.slice(0, text.length - 1));
       }, deletingSpeed);
     } else if (isDeleting && text.length === 0) {
-      setIsDeleting(false);
-      setPhraseIndex((i) => (i + 1) % phrases.length);
+      // Move on to the next phrase from a timer callback rather than
+      // setting state synchronously in the effect body.
+      timeout = setTimeout(() => {
+        setIsDeleting(false);
+        setPhraseIndex((i) => (i + 1) % phrases.length);
+      }, 0);
     }
 
     return () => clearTimeout(timeout);

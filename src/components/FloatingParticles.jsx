@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 /**
  * A handful of soft yellow motes drifting upward — a nod to Minion "goo"
@@ -6,23 +6,18 @@ import { useEffect, useState } from "react";
  * so it stays cheap, and respects prefers-reduced-motion via global CSS.
  */
 export default function FloatingParticles({ count = 22 }) {
-  const [particles, setParticles] = useState([]);
-
-  // Randomness is generated post-mount (not during render) so this
-  // component stays a pure function of its props/state, per React's
-  // rules on idempotent rendering.
-  useEffect(() => {
-    setParticles(
-      Array.from({ length: count }, (_, i) => ({
-        id: i,
-        left: Math.random() * 100,
-        size: 2 + Math.random() * 5,
-        duration: 14 + Math.random() * 16,
-        delay: Math.random() * -20,
-        opacity: 0.25 + Math.random() * 0.5,
-      }))
-    );
-  }, [count]);
+  // The motes are generated once per mount, in a state initializer, so they
+  // keep the same positions across re-renders.
+  const [particles] = useState(() =>
+    Array.from({ length: count }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      size: 2 + Math.random() * 5,
+      duration: 14 + Math.random() * 16,
+      delay: Math.random() * -20,
+      opacity: 0.25 + Math.random() * 0.5,
+    }))
+  );
 
   return (
     <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
