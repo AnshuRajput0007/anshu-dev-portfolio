@@ -1,0 +1,17 @@
+{
+  "name": "Anshu Rajput \u2014 Frontend Developer Portfolio",
+  "short_name": "AR.dev",
+  "description": "Portfolio of Anshu Rajput, a frontend developer and B.Tech CSE student based in Delhi, India.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0B0C10",
+  "theme_color": "#0B0C10",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
